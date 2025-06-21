@@ -31,6 +31,8 @@ kotlin {
 //        }
 //    }
 
+    jvm("desktop")
+
     sourceSets {
         commonMain.dependencies {
             implementation(libs.compose.runtime)
@@ -61,7 +63,7 @@ mavenPublishing {
     publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL, automaticRelease = true)
     signAllPublications()
 
-    coordinates("io.github.skyd666", "settings", "1.0-beta01")
+    coordinates("io.github.skyd666", "settings", "1.0-beta02")
 
     pom {
         name.set("Settings")
