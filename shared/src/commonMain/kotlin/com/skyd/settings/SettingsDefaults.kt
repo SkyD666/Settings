@@ -7,43 +7,46 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
+data class SettingsStyle(
+    val itemTopBottomSpace: Dp = 16.dp,
+    val itemHorizontalSpace: Dp = 16.dp,
+    val itemVerticalSpace: Dp = 1.dp,
+    val baseItemVerticalPadding: Dp = 14.dp,
+    val baseItemBackground: Color? = null,
+    val baseItemEnabled: Boolean = true,
+    val baseItemRoundTop: Boolean = false,
+    val baseItemRoundBottom: Boolean = false,
+    val baseItemUseColorfulIcon: Boolean = false,
+)
+
+val LocalSettingsStyle = compositionLocalOf { SettingsStyle() }
+
 object SettingsDefaults {
     internal val itemRoundLarge = 20.dp
     internal val itemRoundSmall = 5.dp
 
-    internal val LocalItemTopBottomSpace = compositionLocalOf { 16.dp }
-    internal val LocalItemHorizontalSpace = compositionLocalOf { 16.dp }
-    internal val LocalItemVerticalSpace = compositionLocalOf { 1.dp }
-
-    internal val LocalBaseItemVerticalPadding = compositionLocalOf { 14.dp }
-    internal val LocalBaseItemBackground = compositionLocalOf<Color?> { null }
-    internal val LocalBaseItemEnabled = compositionLocalOf { true }
-    internal val LocalBaseItemRoundTop = compositionLocalOf { false }
-    internal val LocalBaseItemRoundBottom = compositionLocalOf { false }
-    internal val LocalBaseItemUseColorfulIcon = compositionLocalOf { false }
-
     val itemTopBottomSpace: Dp
-        @Composable get() = LocalItemTopBottomSpace.current
+        @Composable get() = LocalSettingsStyle.current.itemTopBottomSpace
     val itemHorizontalSpace: Dp
-        @Composable get() = LocalItemHorizontalSpace.current
+        @Composable get() = LocalSettingsStyle.current.itemHorizontalSpace
     val itemVerticalSpace: Dp
-        @Composable get() = LocalItemVerticalSpace.current
+        @Composable get() = LocalSettingsStyle.current.itemVerticalSpace
 
     val baseItemVerticalPadding: Dp
-        @Composable get() = LocalBaseItemVerticalPadding.current
+        @Composable get() = LocalSettingsStyle.current.baseItemVerticalPadding
     val baseItemBackground: Color
-        @Composable get() = LocalBaseItemBackground.current
+        @Composable get() = LocalSettingsStyle.current.baseItemBackground
             ?: MaterialTheme.colorScheme.surfaceContainerHighest
     val baseItemEnabled: Boolean
-        @Composable get() = LocalBaseItemEnabled.current
+        @Composable get() = LocalSettingsStyle.current.baseItemEnabled
     val baseItemRoundTop: Boolean
-        @Composable get() = LocalBaseItemRoundTop.current
+        @Composable get() = LocalSettingsStyle.current.baseItemRoundTop
     val baseItemRoundBottom: Boolean
-        @Composable get() = LocalBaseItemRoundBottom.current
+        @Composable get() = LocalSettingsStyle.current.baseItemRoundBottom
     val baseItemTopRound: Dp
         @Composable get() = if (baseItemRoundTop) itemRoundLarge else itemRoundSmall
     val baseItemBottomRound: Dp
         @Composable get() = if (baseItemRoundBottom) itemRoundLarge else itemRoundSmall
     val baseItemUseColorfulIcon: Boolean
-        @Composable get() = LocalBaseItemUseColorfulIcon.current
+        @Composable get() = LocalSettingsStyle.current.baseItemUseColorfulIcon
 }

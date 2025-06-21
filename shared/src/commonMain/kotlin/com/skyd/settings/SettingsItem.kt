@@ -54,10 +54,12 @@ fun SettingsOtherItemScope.BannerItem(content: @Composable () -> Unit) {
     Column {
         CompositionLocalProvider(
             LocalContentColor provides (LocalContentColor.current alwaysLight true),
-            SettingsDefaults.LocalBaseItemBackground provides Color.Transparent,
-            SettingsDefaults.LocalItemHorizontalSpace provides 0.dp,
-            SettingsDefaults.LocalItemVerticalSpace provides 0.dp,
-            SettingsDefaults.LocalBaseItemVerticalPadding provides 21.dp
+            LocalSettingsStyle provides SettingsStyle(
+                itemHorizontalSpace = 0.dp,
+                itemVerticalSpace = 0.dp,
+                baseItemBackground = Color.Transparent,
+                baseItemVerticalPadding = 21.dp,
+            ),
         ) {
             Box(
                 modifier = Modifier

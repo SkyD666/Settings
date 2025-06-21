@@ -9,7 +9,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.skyd.settings.CategorySettingsItem
-import com.skyd.settings.SettingsDefaults
+import com.skyd.settings.LocalSettingsStyle
+import com.skyd.settings.SettingsStyle
 import com.skyd.settings.suspendString
 
 @SettingsLazyScopeMarker
@@ -130,9 +131,11 @@ internal class SettingsLazyListScopeImpl(
                     ) {
                         if (isBaseItem) {
                             CompositionLocalProvider(
-                                SettingsDefaults.LocalBaseItemEnabled provides enabled,
-                                SettingsDefaults.LocalBaseItemRoundTop provides !prevIsBase,
-                                SettingsDefaults.LocalBaseItemRoundBottom provides !nextIsBase,
+                                LocalSettingsStyle provides SettingsStyle(
+                                    baseItemEnabled = enabled,
+                                    baseItemRoundTop = !prevIsBase,
+                                    baseItemRoundBottom = !nextIsBase,
+                                ),
                             ) {
                                 remember(this) { SettingsItemScopeImpl(this) }.itemContent(index)
                             }
@@ -151,9 +154,11 @@ internal class SettingsLazyListScopeImpl(
                         when (lazyContent) {
                             is SettingsSingleContent.SettingsBaseContent -> {
                                 CompositionLocalProvider(
-                                    SettingsDefaults.LocalBaseItemEnabled provides enabled,
-                                    SettingsDefaults.LocalBaseItemRoundTop provides !prevIsBase,
-                                    SettingsDefaults.LocalBaseItemRoundBottom provides !nextIsBase,
+                                    LocalSettingsStyle provides SettingsStyle(
+                                        baseItemEnabled = enabled,
+                                        baseItemRoundTop = !prevIsBase,
+                                        baseItemRoundBottom = !nextIsBase,
+                                    ),
                                 ) {
                                     lazyContent.content(remember(this) {
                                         SettingsBaseItemScopeImpl(
