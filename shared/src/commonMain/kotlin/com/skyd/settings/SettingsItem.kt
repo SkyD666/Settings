@@ -42,6 +42,7 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -517,6 +518,17 @@ fun SettingsOtherItemScope.CategorySettingsItem(text: String) {
 
 @Composable
 fun SettingsOtherItemScope.TipSettingsItem(text: String) {
+    Column(
+        modifier = Modifier.padding(horizontal = 20.dp, vertical = 12.dp)
+    ) {
+        Icon(imageVector = Icons.Outlined.Info, contentDescription = null)
+        Spacer(modifier = Modifier.height(10.dp))
+        Text(text = text, style = MaterialTheme.typography.bodyMedium)
+    }
+}
+
+@Composable
+fun SettingsOtherItemScope.TipSettingsItem(text: AnnotatedString) {
     Column(
         modifier = Modifier.padding(horizontal = 20.dp, vertical = 12.dp)
     ) {

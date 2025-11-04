@@ -1,4 +1,3 @@
-import com.vanniktech.maven.publish.SonatypeHost
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
@@ -31,15 +30,15 @@ kotlin {
 //        }
 //    }
 
-    jvm("desktop")
+    jvm()
 
     sourceSets {
         commonMain.dependencies {
-            implementation(libs.compose.runtime)
-            implementation(libs.compose.ui)
-            implementation(libs.compose.foundation)
-            implementation(libs.compose.material3)
-            implementation(libs.compose.material.icons)
+            implementation(compose.runtime)
+            implementation(compose.ui)
+            implementation(compose.material3)
+            implementation(compose.foundation)
+            implementation(compose.materialIconsExtended)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
@@ -49,7 +48,7 @@ kotlin {
 
 android {
     namespace = "com.skyd.settings"
-    compileSdk = 35
+    compileSdk = 36
     defaultConfig {
         minSdk = 24
     }
@@ -60,10 +59,10 @@ android {
 }
 
 mavenPublishing {
-    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL, automaticRelease = true)
+    publishToMavenCentral(automaticRelease = true)
     signAllPublications()
 
-    coordinates("io.github.skyd666", "settings", "1.0-beta03")
+    coordinates("io.github.skyd666", "settings", "1.0-beta04")
 
     pom {
         name.set("Settings")
