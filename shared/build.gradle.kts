@@ -1,3 +1,5 @@
+@file:Suppress("UnstableApiUsage")
+
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
@@ -9,22 +11,21 @@ plugins {
 }
 
 kotlin {
-    androidTarget {
+    androidLibrary {
+        namespace = "com.skyd.settings"
+        compileSdk = 36
+        minSdk = 24
         compilerOptions {
             jvmTarget = JvmTarget.JVM_17
         }
     }
 
-//    listOf(
-//        iosX64(),
-//        iosArm64(),
-//        iosSimulatorArm64()
-//    ).forEach {
-//        it.binaries.framework {
-//            baseName = "shared"
-//            isStatic = true
-//        }
-//    }
+    iosX64()
+    iosArm64()
+    iosSimulatorArm64()
+
+    macosX64()
+    macosArm64()
 
     jvm()
 
@@ -42,47 +43,35 @@ kotlin {
     }
 }
 
-android {
-    namespace = "com.skyd.settings"
-    compileSdk = 36
-    defaultConfig {
-        minSdk = 24
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }
-}
-
 mavenPublishing {
     publishToMavenCentral(automaticRelease = true)
     signAllPublications()
 
-    coordinates("io.github.skyd666", "settings", "1.0-beta05")
+    coordinates("io.github.skyd666", "settings", "1.0-beta06")
 
     pom {
-        name.set("Settings")
-        description.set("A Compose Multiplatform Settings UI Component.")
-        inceptionYear.set("2025")
-        url.set("https://github.com/SkyD666/Settings")
+        name = "Settings"
+        description = "A Compose Multiplatform Settings UI Component."
+        inceptionYear = "2025"
+        url = "https://github.com/SkyD666/Settings"
         licenses {
             license {
-                name.set("The Apache License, Version 2.0")
-                url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
-                distribution.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
+                name = "The Apache License, Version 2.0"
+                url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+                distribution = "http://www.apache.org/licenses/LICENSE-2.0.txt"
             }
         }
         developers {
             developer {
-                id.set("SkyD666")
-                name.set("SkyD666")
-                url.set("https://github.com/SkyD666")
+                id = "SkyD666"
+                name = "SkyD666"
+                url = "https://github.com/SkyD666"
             }
         }
         scm {
-            url.set("https://github.com/SkyD666/Settings")
-            connection.set("scm:git:git://github.com/SkyD666/Settings.git")
-            developerConnection.set("scm:git:ssh://git@github.com/SkyD666/Settings.git")
+            url = "https://github.com/SkyD666/Settings"
+            connection = "scm:git:git://github.com/SkyD666/Settings.git"
+            developerConnection = "scm:git:ssh://git@github.com/SkyD666/Settings.git"
         }
     }
 }
