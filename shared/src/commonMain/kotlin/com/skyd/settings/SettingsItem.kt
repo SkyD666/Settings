@@ -79,7 +79,7 @@ fun SelectedItem(selected: Boolean, content: @Composable () -> Unit) {
     if (selected) {
         CompositionLocalProvider(
             LocalSettingsStyle provides LocalSettingsStyle.current.copy(
-                baseItemBackground = MaterialTheme.colorScheme.surfaceContainerHighest
+                baseItemBackground = MaterialTheme.colorScheme.surfaceDim
             )
         ) {
             content()
