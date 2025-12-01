@@ -75,11 +75,16 @@ fun SettingsOtherItemScope.BannerItem(content: @Composable () -> Unit) {
 }
 
 @Composable
-inline fun SelectedItem(selected: Boolean, content: @Composable () -> Unit) {
-    Box(modifier = Modifier.run {
-        if (selected) background(MaterialTheme.colorScheme.surfaceContainerHighest)
-        else this
-    }) {
+fun SelectedItem(selected: Boolean, content: @Composable () -> Unit) {
+    if (selected) {
+        CompositionLocalProvider(
+            LocalSettingsStyle provides LocalSettingsStyle.current.copy(
+                baseItemBackground = MaterialTheme.colorScheme.surfaceContainerHighest
+            )
+        ) {
+            content()
+        }
+    } else {
         content()
     }
 }

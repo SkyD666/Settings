@@ -47,7 +47,7 @@ mavenPublishing {
     publishToMavenCentral(automaticRelease = true)
     signAllPublications()
 
-    coordinates("io.github.skyd666", "settings", "1.0-beta06")
+    coordinates("io.github.skyd666", "settings", "1.0-beta07")
 
     pom {
         name = "Settings"
